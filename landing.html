@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <title>D3JS_SAMPLE1</title>
+  
+</head>
+<body>
+  <script type="text/javascript">
+var width = 1024;
+var height = 768;
+var ctrl = d3.select("body").append("svg").attr("width", width).attr("height", height);
+
+
+d3.csv("./2330.csv", 
+  function(data)
+  {
+    var ln = data.length;
+    console.log(data);
+    var maxy = d3.max(data, function(d){ return d.close; });
+    var lines = d3.line().x(function(d,i){return i*(width/ln);}).y(function(d){return height-d.close*(height/maxy)});
+    ctrl.append("path").data([data]).attr("d", lines).attr("stroke", "red").attr("fill", "none");
+
+    var ln = data.length;
+    console.log(data);
+    var maxy = d3.max(data, function(d){ return d.open; });
+    var lines = d3.line().x(function(d,i){return i*(width/ln);}).y(function(d){return height-d.open*(height/maxy)});
+    ctrl.append("path").data([data]).attr("d", lines).attr("stroke", "blue").attr("fill", "none");
+  }
+
+);
+ 
+
+</script>
+
+<div class='tableauPlaceholder' id='viz1479902830381' style='position: relative'>
+<noscript><a href='#'><img alt='Sheet 1 ' src='https:/;/;public.tableau.com/;static/;images/;Bo/;Book3_4979/;Sheet1/;1_rss.png' style='border: none' /></a>
+</noscript>
+<object class='tableauViz'  style='display:none;'>
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+<param name='site_root' value='' />
+<param name='name' value='Book3_4979/;Sheet1' />
+<param name='tabs' value='no' />
+<param name='toolbar' value='yes' />
+<param name='static_image' value='https:/;/;public.tableau.com/;static/;images/;Bo/;Book3_4979/;Sheet1/;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' />
+</object>
+</div>                
+<script type='text/javascript'>                    var divElement = document.getElementById('viz1479902830381');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+
+</script>
+</body>
+</html>
